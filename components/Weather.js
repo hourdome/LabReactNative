@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     opacity: 0.5,
     backgroundColor: "#012",
     width: "100%",
-    height: "50%",
+    height: "100%",
   },
   text: {
     color: "white",
