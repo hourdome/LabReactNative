@@ -8,13 +8,15 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableHighlight } from "react-native-gesture-handler";
-import Weather from "../components/Weather";
+
 const availableZipItems = [
   { place: "Hat Yai", code: "90110" },
   { place: "Trang", code: "92000" },
   { place: "Chiangmai", code: "50000" },
   { place: "Khonkaen", code: "40000" },
   { place: "Chonburi", code: "20000" },
+  { place: "Bangkok", code: "10200"},
+  { place: "Songkhla", code: "90000"},
 ];
 
 const ZipItem = ({ place, code, navigation }) => (
@@ -33,11 +35,13 @@ export default function ZipCodeScreen() {
   const navigation = useNavigation();
   return (
     <View>
+      <ImageBackground source={require("../pic/bg3.gif")} style={styles.backtap}>
       <FlatList
         data={availableZipItems}
         keyExtractor={(item) => item.code}
         renderItem={({ item }) => <ZipItem {...item} navigation={navigation} />}
       />
+    </ImageBackground>
     </View>
   );
 }
@@ -67,7 +71,11 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
     display: "flex",
     height: 200,
-    opacity: 0.8,
-    backgroundColor: "#000000",
+    opacity: 0.5,
+    backgroundColor: "#000",
   },
+  backtap:{
+    width: "100%",
+    height: "100%",
+  }
 });
