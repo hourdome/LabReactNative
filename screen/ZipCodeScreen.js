@@ -1,10 +1,16 @@
-import React from "react";
-import { FlatList, View, Text, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import {
+  FlatList,
+  View,
+  Text,
+  StyleSheet,
+  ImageBackground,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { TouchableHighlight } from "react-native-gesture-handler";
-
+import Weather from "../components/Weather";
 const availableZipItems = [
-  { place: "Hatyai", code: "90110" },
+  { place: "Hat Yai", code: "90110" },
   { place: "Trang", code: "92000" },
   { place: "Chiangmai", code: "50000" },
   { place: "Khonkaen", code: "40000" },
@@ -15,33 +21,53 @@ const ZipItem = ({ place, code, navigation }) => (
   <TouchableHighlight
     onPress={() => navigation.navigate("Weather", { zipCode: code })}
   >
-    <View style={styles.zipItem}>
-      <Text>{place}</Text>
-      <Text>{code}</Text>
-    </View>
+    <ImageBackground style={styles.backdrop}>
+      <View style={styles.zipItem}>
+        <Text style={styles.zipPlace}>{place}</Text>
+      </View>
+    </ImageBackground>
   </TouchableHighlight>
 );
 
 export default function ZipCodeScreen() {
   const navigation = useNavigation();
   return (
-    <FlatList
-      data={availableZipItems}
-      keyExtractor={(item) => item.code}
-      renderItem={({ item }) => <ZipItem {...item} navigation={navigation} />}
-    />
+    <View>
+      <FlatList
+        data={availableZipItems}
+        keyExtractor={(item) => item.code}
+        renderItem={({ item }) => <ZipItem {...item} navigation={navigation} />}
+      />
+    </View>
   );
 }
 const styles = StyleSheet.create({
   zipItem: {
-    flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
+    paddingTop: 10,
+    paddingBottom: 10,
+    paddingLeft: 20,
+    alignItems: "center",
+    justifyContent: "flex-start",
+    width: "100%",
+    height: "100%",
   },
   zipPlace: {
-    flex: 1,
+    fontSize: 50,
+    color: "white",
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 3,
+    textShadowColor: "black",
   },
-  zipCode: {
-    flex: 1,
+
+  backdrop: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "flex-start",
+    display: "flex",
+    height: 200,
+    opacity: 0.8,
+    backgroundColor: "#000000",
   },
 });
