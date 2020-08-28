@@ -8,6 +8,7 @@ export default function Weather(props) {
     description: "-",
     temp: 0,
     name: "-",
+    time: 0,
   });
 
   useEffect(() => {
@@ -23,6 +24,7 @@ export default function Weather(props) {
             description: json.weather[0].description,
             temp: json.main.temp,
             name: json.name,
+            //time: json.timezone,
           });
         })
         .catch((error) => {
@@ -31,6 +33,7 @@ export default function Weather(props) {
     }
   }, [props.zipCode]);
 
+  
   return (
     <ImageBackground source={require("../pic/bg.jpg")} style={styles.backdrop}>
       <View style={styles.container}>
