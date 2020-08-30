@@ -2,11 +2,10 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
 export default function Forecast(props) {
-  const d = new Date()
-  const utc = d.getTimezoneOffset();
+ 
   return (
     <View>
-      <Text style={styles.layout3}>{d.setMinutes(d.getMinutes()+utc)}</Text>
+    
       <Text style={styles.layout4}>{props.name}</Text>
       <Text style={styles.layout}>{props.main}</Text>
       <Text style={styles.layout2}>{props.description}</Text>

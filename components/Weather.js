@@ -8,7 +8,6 @@ export default function Weather(props) {
     description: "-",
     temp: 0,
     name: "-",
-    time: 0,
   });
 
   useEffect(() => {
